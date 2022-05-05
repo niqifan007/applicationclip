@@ -60,7 +60,7 @@ custom_css = """
 /*Horizontal Radio*/
 div.row-widget.stRadio > div{flex-direction:row} div.row-widget.stRadio > div label {margin-right: .75em;} div.row-widget.stRadio > div label:last-child{margin-right: 0}
 footer:after{
-	content: "MindsEye GUI by multimodal.art. Disco Diffusion v5 model by @somnai_dreams and @gandamu, based on the foundational work of @RiversHaveWings, with modifications by @danielrussruss, Dango233, Chigozie Nri's, @softologyComAu and others. Hypertron v2 VQGAN model by Philipuss adapted from @RiversHaveWings with modifications by @jbusted1, @softologyComAu and others. Original GAN+CLIP by @advadnoun. CLIP and Guided Diffusion were originally released by OpenAI. VQGAN was released by CompVis Heidelberg"
+	content: " "
 }
 .footer {left: 0;text-align: left;padding-left: 4em;padding-right: 4em;padding-top: 1em;width: 109%;margin-left: -4.5%;margin-top: 4.5em}
 .block-container{padding-bottom: 2em}
@@ -110,7 +110,7 @@ initial_load = st.empty()
 initial_load.empty()
 
 st.write(
-    "<h2>CLIP+Diffsution应用 beta <small>ai art generator by @waka</a></small></h2>",
+    "<h2>CLIP+Diffusion应用 beta <small>ai art generator by @waka</a></small></h2>",
     unsafe_allow_html=True,
 )
 
@@ -186,11 +186,8 @@ with enhancers:
         for enhancer in listofenhancers:
             st.button(enhancer, on_click=add_to_prompt, args=(enhancer,))
 
-# Soon add a media input for image/audio as prompts
+# 很快就能为图像/音频添加一个媒体输入作为提示。
 # col2_input.write('and/or')
-# user_input_image = col3_input.file_uploader("A media prompt (image or audio file)",type=["png","jpg","wav"],help="Media prompts only work with VQGAN-CLIP for now (Guided Diffusion coming soon)")
-
-# st.write('<style>.block-container > div div[data-testid="stHorizontalBlock"] div[data-testid="stBlock"]:nth-child(2) {display: flex;flex-direction: column;justify-content: center} .block-container > div div[data-testid="stHorizontalBlock"] div[data-testid="stBlock"]:nth-child(2) p{text-align: center}<style>', unsafe_allow_html=True)
 
 page = st.radio("图像生成模型", page_names, index=0)
 col_submit1, col_submit2 = st.columns([3, 1])
@@ -253,7 +250,7 @@ with settings:
                 model_names,
                 index=0,
                 help="这些模型会影响VQGAN对某些元素的构成程度。",
-                # help="The model the VQGAN was pre-trained on. Explore different ones, the default one usually produces more consistent results, but the wikiart and coco ones can also show interesting outputs",
+
             )
             clip_models = [
                 "ViT-B/16",
@@ -272,23 +269,7 @@ with settings:
                 help="选择你想在你的作品中使用的CLIP模型。 选择 ViT-L/14 or RN50x64 不开会员的话会爆显存",
             )
             seed = col1.number_input("Seed", value=init_seed, step=1)
-            # template = col1.select("Template")
-            # learning_rate = col1.number_input(
-            #    "Learning rate",
-            #    value=0.1,
-            #    step=0.1,
-            #    help="Defines how 'fast' the image will evolve from one iteration to another. Experiment with this value to understand how much more detail you can get into the image",
-            # )
-            # cutouts = col1.number_input(
-            #    "Cutouts",
-            #    value=64,
-            #    help="How many times the image will be split for CLIP's assessment. 64 sounds good for VQGAN+CLIP",
-            # )
-            # cut_power = col1.number_input(
-            #    "Cut power",
-            #    value=4,
-            #    help="Makes them close to the min end, which means possibly more details.",
-            # )
+
             template = col1.selectbox(
                 "参数调整模板",
                 options=[
@@ -341,7 +322,7 @@ with settings:
                 unsafe_allow_html=True,
             )
     elif page == "CLIP Guided Diffusion":
-        # Weirdly enough this is necessary for the value not going to zero when a prompt is enhanced. Maybe streamlit bug.
+        # 对于提示增强时数值不归零是必要的。可能是streamlit bug.
         st.session_state.width = st.session_state.width
         st.session_state.height = st.session_state.height
         sub_model_names = ["Disco Diffusion v5"]
@@ -534,10 +515,6 @@ with settings:
         )
         if uploaded_file is not None:
             col1, col2 = st.columns(2)
-            #initscale = col1.number_input(
-            #    "Init scale - How strongly should the model follow the init image",
-            #    value=1000,
-            #)
             skipseedtimesteps = st.number_input(
                 "跳过的时间步数 - 将图像与导引扩散样本混合的时间步数。",
                 value=20,
@@ -869,9 +846,6 @@ with col_output2:
             for k in range(len(glob.glob('*.png'))-1):
                 image_gallery.append(f'{k}-{image_file}')
             gallery_image_area.image(image_gallery)
-        #if os.path.exists("progress.png"):
-        #    gallery_text_area.write("Your last creation:")
-        #    gallery_image_area.image(Image.open("progress.png"))
     
 footer = """
 <div class="footer">

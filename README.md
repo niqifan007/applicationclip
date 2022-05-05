@@ -1,3 +1,2 @@
-# MindsEye beta
-MindsEye beta - AI art Pilot. Access it [running on Google Colab here](http://mindseye.multimodal.art). 
-And learn more about it, including how to use it [here](https://multimodal.art/mindseye)
+# clip+diffusion
+colab笔记本在这 [running on Google Colab here](https://colab.research.google.com/drive/1cI6wdTT0AS2cx8GEi1K9fqdi_rg-tlDt?usp=sharing).
