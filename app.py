@@ -834,6 +834,10 @@ with col_output2:
                 f'<div class="bottom-line"><div class="row-widget stButton"><a kind="primary" class="css-1q8dd3e edgvbvh1" href="https://drive.google.com/drive/folders/{fid}" target="_blank">在Google Drive上查看你的画</a></div><small>这是一个全开源的应用。 我们 <b>不会收集你的结果和提示词</b>。 </small></div>',
                 unsafe_allow_html=True,
             )
+            st.write(
+                f'<div class="bottom-line"><div class="row-widget stButton"><a kind="primary" class="css-1q8dd3e edgvbvh1" href="http://121.5.12.164/" target="_blank">在我们的分享网站上分享你的画！</a></div><small>让更多人看到你的大作！ </small></div>',
+                unsafe_allow_html=True,
+            )
     else:
         st.write(
             f'<div class="bottom-line"><div class="row-widget stButton"><button disabled kind="primary" class="css-1q8dd3e edgvbvh1">没有找到画廊。重新运行Colab并连接到Drive以将作品保存在画廊中。</button></div><small>我们 <b>不会收集你的结果和提示词</b>。 </small></div>',
